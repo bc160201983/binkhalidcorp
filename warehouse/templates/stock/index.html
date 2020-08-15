@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Sock Available</h1>
+            <a href="" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Gate Pass</a>
+          </div>
+
+          <!-- Content Row -->
+          <div class="row">
+
+{#            <form method="post">#}
+{#                {% csrf_token %}#}
+{#                {{ form|crispy }}#}
+{#                <button type="submit">Sign in</button>#}
+{#            </form>#}
+
+            <!-- Pending Requests Card Example -->
+{#            <div class="col-xl-3 col-md-6 mb-4">#}
+{#              <div class="card border-left-warning shadow h-100 py-2">#}
+{#                <div class="card-body">#}
+{#                  <div class="row no-gutters align-items-center">#}
+{#                    <div class="col mr-2">#}
+{#                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total Cost</div>#}
+{#                      <div class="h5 mb-0 font-weight-bold text-gray-800"><strong>Rs</strong></div>#}
+{#                    </div>#}
+{#                    <div class="col-auto">#}
+{#                      <i class="fas fa-comments fa-2x text-gray-300"></i>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+
+
+          </div>
+{# <h1 class="h3 mb-2 text-gray-800">Orders</h1>#}
+{#          <p class="mb-4">Total Orders.</p>#}
+                    <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Sock Available</h6>
+{#                <a href="{% url 'gatepass:create_stiching' %}" class="btn btn-secondary" style="float: right">Create</a>#}
+                <a href="{% url 'werehouse:warehouse-stock-create' %}" style="float: right" class="btn btn-primary">Create</a>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Name</th>
+
+                      <th>Length</th>
+                        <th>Category</th>
+                      <th>weight</th>
+
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Name</th>
+                      <th>Length</th>
+                        <th>Category</th>
+                      <th>weight</th>
+
+
+                    </tr>
+                  </tfoot>
+                  <tbody>
+
+                    {% for s in stock %}
+                        <tr>
+                        <td>{{ s.id }}</td>
+                        <td>{{ s.name }}</td>
+                        <td>{{ s.length }} <strong>Meter</strong></td>
+                            <td>{{ s.categories.name }}</td>
+                        <td>{{ s.weight }} <strong>KG</strong></td>
+
+
+                        </tr>
+
+                  {% endfor %}
+
+
+
+
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+
+
+        </div>
+        <!-- /.container-fluid -->
+
+
+
+
+
+    <script>
+    $(document).ready(function() {
+          $('#dataTable').DataTable({
+               "order": [[ 0, "desc" ]]
+          });
+
+
+
+
+ });
+
+</script>
+{% endblock content%}
